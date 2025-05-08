@@ -46,8 +46,9 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          I&apos;m a Full Stack Software Engineer with experience in Website,
-          Mobile, and Software development. Check out my projects and skills.
+         I&apos;m Zahran Sammi a Full Stack developer and AI enthusiast with a passion for creating innovative solutions. I specialize in Web, AI, and
+         Mobile development. I have experience in various technologies including React, Node.js, Python, and more. I am always eager to learn and explore new technologies. My goal is to build scalable and efficient applications that solve real-world problems. I have a strong background in Web, AI,
+          Mobile, and Software development.
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
