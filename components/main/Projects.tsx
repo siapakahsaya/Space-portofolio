@@ -20,29 +20,14 @@ interface Project {
 const Projects: React.FC = () => {
   const projects: Project[] = [
     {
-      src: "/nextjs-portfolio.png",
+      src: "/CardImage.png",
       title: "Portfolio Website",
       description: "Modern portfolio built with Next.js, TypeScript, and Tailwind CSS",
-      href: "project/praktikum1/index.html",
+      href: "https://your-portfolio-url.com", // Ubah ke URL yang valid
       category: ProjectCategory.WEB,
       technologies: ["js", "html", "css"]
     },
-    {
-      src: "/ecommerce-app.png",
-      title: "E-commerce Platform",
-      description: "Full-stack e-commerce with authentication and payment integration",
-      href: "https://ecommerce-demo.vercel.app",
-      category: ProjectCategory.FULLSTACK,
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"]
-    },
-    {
-      src: "/mobile-app.png",
-      title: "React Native App",
-      description: "Cross-platform mobile application with real-time features",
-      href: "https://github.com/username/mobile-app",
-      category: ProjectCategory.MOBILE,
-      technologies: ["React Native", "TypeScript", "Firebase"]
-    }
+    // ... rest
   ];
 
   return (
@@ -51,7 +36,7 @@ const Projects: React.FC = () => {
           id="projects"
       >
         <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-20">
-          Praktikum 1
+          Project
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-10 max-w-7xl mx-auto">
