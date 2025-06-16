@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zahran Sammi - Profile</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="25" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="25" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      font-size: 60px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    /* Education Section */
+    .education-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+    }
+
+    .university-logo {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        font-size: 40px;
+      }
+    }
+
+    /* Particle Animation */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      animation: floatParticle 15s infinite linear;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="nav">
+  <ul>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#education">Pendidikan</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="particles"></div>
+  <div class="hero-content">
+    <div class="profile-img">ZS</div>
+    <h1>Zahran Sammi</h1>
+    <p class="subtitle">Mahasiswa Universitas Darma Persada</p>
+    <div class="scroll-indicator">
+      <span>↓ Scroll untuk lebih lanjut ↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-title">Tentang Saya</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Halo! Saya Zahran Sammi, seorang mahasiswa yang sedang menempuh pendidikan di Universitas Darma Persada. Saya adalah individu yang passionate dalam bidang akademik dan selalu eager untuk belajar hal-hal baru.</p>
+        <br>
+        <p>Dengan semangat yang tinggi dan dedikasi yang kuat, saya berkomitmen untuk memberikan yang terbaik dalam setiap aspek kehidupan, baik akademik maupun personal development.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">📚</div>
+          <p>Student</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">🎯</div>
+          <p>Goal-Oriented</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">💡</div>
+          <p>Creative</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">🚀</div>
+          <p>Motivated</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education Section -->
+<section class="section" id="education">
+  <div class="container">
+    <h2 class="section-title">Pendidikan</h2>
+    <div class="education-card">
+      <div class="university-logo">UDP</div>
+      <h3>Universitas Darma Persada</h3>
+      <p style="font-size: 1.1rem; color: #667eea; margin: 20px 0;">Mahasiswa Aktif</p>
+      <p>Sedang menempuh pendidikan tinggi dengan fokus pada pengembangan akademik dan soft skills. Berkomitmen untuk mencapai prestasi terbaik dan berkontribusi positif bagi almamater.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section" id="contact">
+  <div class="container">
+    <h2 class="section-title">Hubungi Saya</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">Mari terhubung! Saya selalu terbuka untuk diskusi dan kolaborasi.</p>
+    <div class="contact-grid">
+      <div class="contact-card" onclick="showMessage('email')">
+        <div class="contact-icon">📧</div>
+        <h3>Email</h3>
+        <p>Kirim pesan melalui email</p>
+      </div>
+      <div class="contact-card" onclick="showMessage('phone')">
+        <div class="contact-icon">📱</div>
+        <h3>Telepon</h3>
+        <p>Hubungi via telepon</p>
+      </div>
+      <div class="contact-card" onclick="showMessage('social')">
+        <div class="contact-icon">🌐</div>
+        <h3>Social Media</h3>
+        <p>Follow di media sosial</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 Zahran Sammi. Dibuat dengan ❤️</p>
+  </div>
+</footer>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Reveal sections on scroll
+  function revealSections() {
+    const sections = document.querySelectorAll('.section');
+    const windowHeight = window.innerHeight;
+
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < windowHeight * 0.8) {
+        section.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSections);
+  window.addEventListener('load', revealSections);
+
+  // Create floating particles
+  function createParticles() {
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 20;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.width = particle.style.height = Math.random() * 10 + 5 + 'px';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  // Contact card interaction
+  function showMessage(type) {
+    let message;
+    switch(type) {
+      case 'email':
+        message = '📧 Silakan kirim email untuk berkomunikasi!';
+        break;
+      case 'phone':
+        message = '📱 Hubungi untuk diskusi lebih lanjut!';
+        break;
+      case 'social':
+        message = '🌐 Mari connect di media sosial!';
+        break;
+    }
+
+    // Create notification
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 1001;
+                animation: slideIn 0.5s ease-out;
+            `;
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.style.animation = 'slideOut 0.5s ease-in forwards';
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 500);
+    }, 3000);
+  }
+
+  // Add slide animations for notifications
+  const style = document.createElement('style');
+  style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+  document.head.appendChild(style);
+
+  // Dynamic greeting based on time
+  function updateGreeting() {
+    const hour = new Date().getHours();
+    let greeting;
+
+    if (hour < 12) {
+      greeting = "Selamat Pagi! ☀️";
+    } else if (hour < 17) {
+      greeting = "Selamat Siang! 🌤️";
+    } else {
+      greeting = "Selamat Malam! 🌙";
+    }
+
+    // Add greeting to hero subtitle
+    const subtitle = document.querySelector('.hero .subtitle');
+    const originalText = subtitle.textContent;
+    subtitle.innerHTML = `${greeting}<br>${originalText}`;
+  }
+
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', () => {
+    createParticles();
+    updateGreeting();
+
+    // Add entrance animation delay
+    setTimeout(() => {
+      document.querySelector('.hero-content').style.animation = 'fadeInUp 1s ease-out';
+    }, 300);
+  });
+
+  // Easter egg - double click on profile image
+  document.querySelector('.profile-img').addEventListener('dblclick', () => {
+    const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3'];
+    const randomColor1 = colors[Math.floor(Math.random() * colors.length)];
+    const randomColor2 = colors[Math.floor(Math.random() * colors.length)];
+
+    document.querySelector('.profile-img').style.background =
+            `linear-gradient(45deg, ${randomColor1}, ${randomColor2})`;
+  });
+</script>
+</body>
+</html>
