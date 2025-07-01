@@ -1,11 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    webpack: (config, { dev }) => {
-        if (dev) {
-            config.devtool = 'eval-source-map';
-        }
+    experimental: {
+        // Enable jika diperlukan
+        esmExternals: 'loose',
+    },
+    transpilePackages: [
+        'three',
+        '@react-three/fiber',
+        '@react-three/drei',
+        'maath'
+    ],
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.(glsl|vs|fs|vert|frag)$/,
+            use: ['raw-loader', 'glslify-loader'],
+        });
         return config;
     },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

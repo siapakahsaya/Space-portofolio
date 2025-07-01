@@ -20,7 +20,7 @@ interface Project {
 const Projects: React.FC = () => {
   const projects: Project[] = [
     {
-      src: "/CardImage.png",
+      src: "",
       title: "Portfolio Website",
       description: "Modern portfolio built with Next.js, TypeScript, and Tailwind CSS",
       href: "https://your-portfolio-url.com", // Ubah ke URL yang valid
